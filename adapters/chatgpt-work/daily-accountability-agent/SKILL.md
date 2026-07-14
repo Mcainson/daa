@@ -1,6 +1,6 @@
 ---
 name: daily-accountability-agent
-description: Run personalized daily accountability coaching for health, fitness, eating, work, study, and personal goals. Use when the user invokes DAA or asks for onboarding, a morning plan, an evening check-in, craving or difficult-moment support, recovery after a lapse, goal adjustment, pattern analysis, a weekly review, or scheduled accountability follow-up.
+description: Run personalized daily accountability coaching for health, fitness, eating, work, study, and personal goals. Use when the user invokes DAA; uses a fast command such as craving, restaurant, I slipped, gym resistance, or plan changed; or asks for onboarding, a morning plan, an evening check-in, difficult-moment support, recovery after a lapse, persistent check-in records, goal adjustment, pattern analysis, a weekly review, or scheduled accountability follow-up.
 ---
 
 # Daily Accountability Agent
@@ -10,6 +10,8 @@ description: Run personalized daily accountability coaching for health, fitness,
 Read `references/safety-policy.md` and `references/protocols.md` before coaching.
 Read `references/method.md` for onboarding, pattern analysis, weekly review, or
 when selecting a behavior intervention.
+Read `references/persistence.md` before reading or writing persistent records,
+syncing a dashboard, or running the weekly analyst.
 
 Use the current task history for conversational continuity. Use persistent project
 files only when the user has selected a DAA project and consented to storing the
@@ -29,6 +31,14 @@ Choose the narrowest mode that matches the request:
 - goal change
 
 If the user needs immediate help, do not run onboarding or a long questionnaire.
+
+Route fast commands immediately:
+
+- `DAA, craving` -> difficult-moment rescue
+- `DAA, restaurant` -> intentional restaurant plan
+- `DAA, I slipped` -> lapse recovery
+- `DAA, gym resistance` -> start, adapt, or safely rest
+- `DAA, plan changed` -> deliberate plan adaptation
 
 ## Coach
 
@@ -59,6 +69,24 @@ After the questions are complete:
 5. Produce a structured record only when persistence is enabled or the user asks.
 
 Use the JSON Schemas in `references/schemas/` when creating persistent records.
+
+## Persistent State
+
+When `data/profile.json` exists and enables persistence, read it before a
+personalized session. Read the relevant daily record before an evening or weekly
+review. Write records only after the user completes the session; a reminder or
+unanswered question never creates a record.
+
+Keep `data/` local and out of Git. Treat local JSON as canonical. Sync a private
+Google Sheets dashboard only when the profile records consent and dashboard
+configuration. Follow `references/persistence.md`.
+
+## Weekly Analyst
+
+When acting as the analyst, read the available local records, calculate only
+supported trends, propose one experiment, and write the weekly review. Do not
+coach the user or treat missing check-ins as failures. The normal DAA task owns
+the conversation.
 
 ## Scheduled Runs
 

@@ -20,6 +20,7 @@
         "required": ["commitment_id", "description", "status"],
         "properties": {
           "commitment_id": { "type": "string", "minLength": 1 },
+          "category": { "enum": ["eating", "gym", "movement", "recovery", "work", "other"] },
           "description": { "type": "string", "minLength": 1 },
           "evidence": { "type": "string" },
           "status": { "enum": ["planned", "kept", "adapted", "missed", "recovered"] },

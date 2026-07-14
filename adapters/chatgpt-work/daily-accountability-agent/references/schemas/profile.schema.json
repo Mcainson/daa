@@ -39,7 +39,31 @@
       "properties": {
         "morning_check_in": { "type": "string" },
         "evening_check_in": { "type": "string" },
+        "weekly_analysis": { "type": "string" },
         "weekly_review": { "type": "string" }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "root", "dashboard_sync"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "root": { "const": "data" },
+        "dashboard_sync": { "enum": ["disabled", "manual", "consented"] },
+        "retention_notes": { "type": "string" }
+      }
+    },
+    "dashboard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "spreadsheet_id", "spreadsheet_url", "daily_sheet", "weekly_sheet"],
+      "properties": {
+        "provider": { "const": "google_sheets" },
+        "spreadsheet_id": { "type": "string", "minLength": 1 },
+        "spreadsheet_url": { "type": "string", "format": "uri" },
+        "daily_sheet": { "type": "string", "minLength": 1 },
+        "weekly_sheet": { "type": "string", "minLength": 1 }
       }
     }
   },

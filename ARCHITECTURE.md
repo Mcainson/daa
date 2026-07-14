@@ -39,11 +39,22 @@ adjust_goal(profile, goal, evidence) -> revised goal
 
 The ChatGPT Work adapter is implemented as the `daily-accountability-agent`
 personal skill. It supports a persistent task, scheduled morning and evening
-check-ins, on-demand rescue conversations, and weekly reviews.
+check-ins, on-demand rescue conversations, weekly reviews, and a non-coaching
+weekly analyst.
 
-Structured user data should be kept in a user-selected DAA project. Conversation
-memory is useful context but is not the canonical store for measurements or
-commitments.
+Structured user data is kept under the ignored `data/` directory in a
+user-selected DAA project. Local JSON is the canonical store for profiles,
+commitments, and reviews. Conversation history is useful context, and a private
+Google Sheet may provide a consented dashboard projection, but neither replaces
+the local records.
+
+The V1 runtime has four cooperating roles:
+
+- the DAA task conducts daily coaching and difficult-moment support
+- scheduled runs invite the user into morning, evening, and weekly sessions
+- the local store keeps consented structured records outside Git
+- the weekly analyst finds patterns and writes a review for DAA without acting as
+  a second coach
 
 ## Future Product
 
