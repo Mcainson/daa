@@ -1,0 +1,4 @@
+interface:
+  display_name: "DAA"
+  short_description: "Daily coaching for accountable goal progress"
+  default_prompt: "Use $daily-accountability-agent to begin today's check-in and ask me one question at a time."

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://daa.local/schemas/daily-check-in.schema.json",
+  "title": "DAA Daily Check-In",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "date", "commitments"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "profile_id": { "type": "string", "minLength": 1 },
+    "date": { "type": "string", "format": "date" },
+    "primary_outcome": { "type": "string" },
+    "commitments": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["commitment_id", "description", "status"],
+        "properties": {
+          "commitment_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string" },
+          "status": { "enum": ["planned", "kept", "adapted", "missed", "recovered"] },
+          "adaptation_or_recovery": { "type": "string" }
+        }
+      }
+    },
+    "planned_meals_summary": { "type": "string" },
+    "activity_plan_summary": { "type": "string" },
+    "predicted_risk_moment": { "type": "string" },
+    "implementation_intention": { "type": "string" },
+    "important_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "context": { "type": "string" },
+        "cue": { "type": "string" },
+        "internal_state": { "type": "string" },
+        "interpretation": { "type": "string" },
+        "action": { "type": "string" },
+        "result": { "type": "string" },
+        "earliest_intervention_point": { "type": "string" }
+      }
+    },
+    "concrete_win": { "type": "string" },
+    "tomorrow_adjustment": { "type": "string" },
+    "recovery_minutes": { "type": ["integer", "null"], "minimum": 0 },
+    "notes": { "type": "string" }
+  }
+}

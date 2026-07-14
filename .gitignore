@@ -1,0 +1,31 @@
+# Personal accountability data stays local.
+data/
+check-ins/
+journal/
+journals/
+logs/
+personal/
+private/
+profile.local.json
+*.local.json
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets and local configuration.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Generated files and editor state.
+node_modules/
+dist/
+coverage/
+__pycache__/
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

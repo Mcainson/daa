@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://daa.local/schemas/profile.schema.json",
+  "title": "DAA User Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "timezone", "primary_goal", "coaching_preferences"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "profile_id": { "type": "string", "minLength": 1 },
+    "timezone": { "type": "string", "minLength": 1 },
+    "primary_goal": { "$ref": "#/$defs/goal" },
+    "secondary_goals": {
+      "type": "array",
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/goal" }
+    },
+    "success_definition_12_weeks": { "type": "string" },
+    "baseline_notes": { "type": "array", "items": { "type": "string" } },
+    "recurring_risk_contexts": { "type": "array", "items": { "type": "string" } },
+    "successful_strategies": { "type": "array", "items": { "type": "string" } },
+    "preferences": { "type": "array", "items": { "type": "string" } },
+    "non_negotiables": { "type": "array", "items": { "type": "string" } },
+    "clinician_constraints": { "type": "array", "items": { "type": "string" } },
+    "coaching_preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["directness", "ask_one_question_at_a_time"],
+      "properties": {
+        "directness": { "enum": ["gentle", "balanced", "firm"] },
+        "ask_one_question_at_a_time": { "const": true },
+        "meal_photos_optional": { "type": "boolean", "default": true },
+        "notes": { "type": "string" }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "morning_check_in": { "type": "string" },
+        "evening_check_in": { "type": "string" },
+        "weekly_review": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["goal_id", "outcome", "why_it_matters", "status"],
+      "properties": {
+        "goal_id": { "type": "string", "minLength": 1 },
+        "outcome": { "type": "string", "minLength": 1 },
+        "why_it_matters": { "type": "string", "minLength": 1 },
+        "target_date": { "type": ["string", "null"], "format": "date" },
+        "status": { "enum": ["active", "maintenance", "paused", "complete"] },
+        "behavior_targets": { "type": "array", "items": { "type": "string" } },
+        "measurement_plan": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://daa.local/schemas/weekly-review.schema.json",
+  "title": "DAA Weekly Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "week_start", "week_end", "commitment_totals", "next_experiment"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "profile_id": { "type": "string", "minLength": 1 },
+    "week_start": { "type": "string", "format": "date" },
+    "week_end": { "type": "string", "format": "date" },
+    "commitment_totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kept", "adapted", "missed", "recovered"],
+      "properties": {
+        "kept": { "type": "integer", "minimum": 0 },
+        "adapted": { "type": "integer", "minimum": 0 },
+        "missed": { "type": "integer", "minimum": 0 },
+        "recovered": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "measurement_trends": { "type": "array", "items": { "type": "string" } },
+    "recurring_contexts": { "type": "array", "items": { "type": "string" } },
+    "recurring_cues": { "type": "array", "items": { "type": "string" } },
+    "recurring_rationalizations": { "type": "array", "items": { "type": "string" } },
+    "strategies_that_worked": { "type": "array", "items": { "type": "string" } },
+    "recovery_trend": { "type": "string" },
+    "user_learning": { "type": "string" },
+    "goal_decisions": { "type": "array", "items": { "type": "string" } },
+    "next_experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hypothesis", "action", "success_signal", "duration_days"],
+      "properties": {
+        "hypothesis": { "type": "string", "minLength": 1 },
+        "action": { "type": "string", "minLength": 1 },
+        "success_signal": { "type": "string", "minLength": 1 },
+        "duration_days": { "type": "integer", "minimum": 1, "maximum": 14 }
+      }
+    },
+    "independence_skill": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}
