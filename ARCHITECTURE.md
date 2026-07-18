@@ -58,6 +58,11 @@ The V1 runtime has four cooperating roles:
 
 ## Future Product
 
+The current standalone implementation baseline is documented in
+[`docs/MOBILE_HARNESS_ARCHITECTURE.md`](docs/MOBILE_HARNESS_ARCHITECTURE.md): an
+iOS-first React Native/Expo app as the only user-facing V1 product, supported by
+a thin backend and optional on-device HealthKit integration.
+
 A standalone product can replace each adapter independently:
 
 - Work task history with an application database

@@ -6,6 +6,13 @@ Date: 2026-07-13
 
 Scope: what V1 still lacks, which AI capabilities DAA should adopt, and how DAA can become a subscription product without making model cost or health-data risk the center of the product.
 
+> Supersession note (2026-07-17): The mobile client, web surface, and related
+> product-delivery decisions in this roadmap are superseded by
+> [`MOBILE_HARNESS_ARCHITECTURE.md`](MOBILE_HARNESS_ARCHITECTURE.md). DAA now
+> targets an iOS-first React Native/Expo app as its only user-facing product,
+> supported by a thin backend. The AI, safety, data, evaluation, and
+> provider-neutral principles below remain applicable.
+
 ## Executive Decision
 
 DAA should become a provider-neutral service with an iOS-first client and a small web surface.
