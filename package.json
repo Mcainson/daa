@@ -1,0 +1,28 @@
+{
+  "name": "daa",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @daa/mobile start",
+    "dev:web": "pnpm --filter @daa/mobile web",
+    "format": "prettier --write \"apps/mobile/**/*.{ts,tsx,json,md}\" \"packages/**/*.{ts,json}\" \"*.{json,js,ts,yaml,yml,md}\" \"docs/IMPLEMENTATION_PLAN.md\" \"docs/AI_EXTENSION_USE_CASES.md\"",
+    "format:check": "prettier --check \"apps/mobile/**/*.{ts,tsx,json,md}\" \"packages/**/*.{ts,json}\" \"*.{json,js,ts,yaml,yml,md}\" \"docs/IMPLEMENTATION_PLAN.md\" \"docs/AI_EXTENSION_USE_CASES.md\"",
+    "lint": "eslint apps/mobile/src packages --max-warnings=0",
+    "typecheck": "tsc -p packages/contracts/tsconfig.json --noEmit && tsc -p packages/domain/tsconfig.json --noEmit && tsc -p packages/coach-harness/tsconfig.json --noEmit && pnpm --filter @daa/mobile typecheck",
+    "test": "vitest run && pnpm --filter @daa/mobile test",
+    "test:coverage": "vitest run --coverage && pnpm --filter @daa/mobile test -- --coverage",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^9.39.0",
+    "eslint-config-expo": "^57.0.0",
+    "prettier": "^3.9.5",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.10"
+  }
+}
